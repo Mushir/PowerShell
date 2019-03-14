@@ -11,6 +11,7 @@ get-dhcpserverv4lease -ComputerName $dhcpServer -ScopeId $scopeId | foreach-obje
   #echo " : Add-DhcpServerv4Filter -ComputerName $dhcpServer -List Deny -MacAddress $_.clientId -Force -Description  $description"
   Write-Host -NoNewline $_.clientId = $_.HostName
   Write-Host ""
+  #  Uncomment below line to actually add hostnames in DHCP Deny filter
   #Add-DhcpServerv4Filter -ComputerName $dhcpServer -List Deny -MacAddress $_.clientId -Force -Description  $description
   }
 }
