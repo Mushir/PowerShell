@@ -1,0 +1,16 @@
+# Get the the list of DHCP lease, Based on Hostname add in to the Deny Filter
+
+# Scope ID for corp-wifi-mumbai
+$scopeId = "172.27.168.0"
+echo "DHCPServer: $dhcpServer"
+echo "SCOPE ID: $scopeId"
+get-dhcpserverv4lease -ComputerName $dhcpServer -ScopeId $scopeId | foreach-object {
+  if ( ($_.HostName -Notlike 'iml*') -AND ($_.HostName -Notlike 'ibl*') -AND ($_.HostName -Notlike 'IML*') -AND ($_.HostName -Notlike 'IBL*')) {
+  #$description = "NO corp WIFI " + $_.HostName
+  #echo $description
+  #echo " : Add-DhcpServerv4Filter -ComputerName $dhcpServer -List Deny -MacAddress $_.clientId -Force -Description  $description"
+  Write-Host -NoNewline $_.clientId = $_.HostName
+  Write-Host ""
+  #Add-DhcpServerv4Filter -ComputerName $dhcpServer -List Deny -MacAddress $_.clientId -Force -Description  $description
+  }
+}
