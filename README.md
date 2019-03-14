@@ -1,2 +1,2 @@
 # PowerShell
-Musheer's Powershell Scripts
+Mushir's Powershell Scripts
